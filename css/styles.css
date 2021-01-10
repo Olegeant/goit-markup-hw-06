@@ -20,12 +20,15 @@
   --border-color: #eeeeee;
   --border-black-color: #000000;
   --border-modal-btn: rgba(0, 0, 0, 0.1);
+  --border-input-color: rgba(33, 33, 33, 0.2);
+  --modal-placeholder-text-color: rgba(117, 117, 117, 0.5);
   --icon-color: #afb1b8;
 }
 
 /*-------Общие стили-------*/
 
 /* Общие объявления */
+
 body {
   background-color: var(--main-bg-color);
   color: var(--primary-text-color);
@@ -149,6 +152,7 @@ footer .logo {
 
 .site-header .contact-link {
   display: flex;
+  align-items: center;
   padding-top: 32px;
   padding-bottom: 32px;
 
@@ -230,6 +234,7 @@ footer .logo {
 
 .site-footer .container {
   display: flex;
+  align-items: baseline;
 }
 
 .site-footer .social-links {
@@ -237,7 +242,6 @@ footer .logo {
 }
 
 .social-container {
-  padding-top: 12px;
   margin-left: 70px;
 }
 
@@ -260,7 +264,6 @@ footer .logo {
 }
 
 .join-text {
-  display: block;
   margin-top: 0;
   margin-bottom: 20px;
 
@@ -292,6 +295,44 @@ footer .logo {
 
 .footer-contact .item + .item {
   margin-top: 9px;
+}
+
+.subscribe-container {
+  flex-grow: 1;
+  margin-left: 93px;
+}
+
+.subscribe-form {
+  display: flex;
+}
+
+.subscribe-field {
+  display: inline-block;
+  flex-grow: 1;
+  margin-right: 12px;
+}
+
+.subscribe-email {
+  display: inline-block;
+  width: 100%;
+  padding: 14px 16px;
+
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background-color: transparent;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.25;
+  letter-spacing: 0.03em;
+
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.subscribe-icon {
+  fill: currentColor;
+  margin-left: 10px;
 }
 
 /* -------Стили для страницы Студия------- */
@@ -345,14 +386,19 @@ footer .logo {
   text-transform: uppercase;
 }
 
-.hero-button {
-  display: inline-block;
-  padding: 10px 32px;
+.main-button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 200px;
+  padding: 10px 20px;
 
   background-color: var(--accent-color);
   color: var(--inverse-text-color);
   border-radius: 4px;
   border: none;
+
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
 
   font-family: inherit;
   font-weight: 700;
@@ -362,7 +408,7 @@ footer .logo {
   letter-spacing: 0.06em;
 }
 
-.hero-button:hover {
+.main-button:hover {
   cursor: pointer;
 }
 
@@ -373,7 +419,7 @@ footer .logo {
 }
 
 .feature-items .item {
-  flex-basis: calc((100%-3 * 30) / 3);
+  flex-basis: calc((100% - 3 * 30px) / 4);
 }
 
 .feature-items .item:not(:last-child) {
@@ -421,7 +467,9 @@ footer .logo {
 .feature-heading {
   margin-top: 0;
   margin-bottom: 10px;
+
   color: var(--title-text-color);
+
   font-weight: 700;
   font-size: 14px;
   line-height: 1.14;
@@ -432,6 +480,8 @@ footer .logo {
 .feature-details {
   margin-top: 0;
   margin-bottom: 0;
+  /* max-width: 270px; */
+
   font-weight: 400;
   font-size: 14px;
   line-height: 1.71;
@@ -447,7 +497,9 @@ footer .logo {
 .section-title {
   margin-top: 0;
   margin-bottom: 50px;
+
   color: var(--title-text-color);
+
   font-weight: 700;
   font-size: 36px;
   line-height: 1.17;
@@ -599,7 +651,8 @@ footer .logo {
   outline-color: var(--accent-color);
 
   transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
-    color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    filter 100ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .client-list .link-icon {
@@ -611,6 +664,7 @@ footer .logo {
   border-color: var(--accent-color);
   color: var(--accent-color);
   cursor: pointer;
+  filter: drop-shadow(2px 4px 4px rgba(0, 0, 0, 0.25));
 }
 
 /* -------Стили для страницы Портфолио------- */
@@ -651,12 +705,17 @@ footer .logo {
 
 .filter-button.btn-active,
 .filter-button:hover,
-.filter-button:focus {
+.filter-button:not(.btn-active):focus {
   background-color: var(--accent-color);
   color: var(--inverse-text-color);
   cursor: pointer;
   box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.1), 0px 1px 2px rgba(0, 0, 0, 0.08),
     0px 2px 2px rgba(0, 0, 0, 0.12);
+}
+
+.filter-button.btn-active:focus {
+  border: 2px solid black;
+  margin: -2px -2px;
 }
 
 .works-samples {
@@ -701,7 +760,7 @@ footer .logo {
   width: 100%;
 }
 
-.work-title {
+.work-meta {
   padding: 20px 24px;
   border-right: 1px solid var(--border-color);
   border-bottom: 1px solid var(--border-color);
@@ -792,16 +851,20 @@ footer .logo {
 .modal {
   position: absolute;
   width: 528px;
-  height: 581px;
   left: 50%;
   top: 50%;
+  transform: translate(-50%, -50%);
+  padding: 40px;
 
+  border-radius: 4px;
   background-color: var(--main-bg-color);
 
-  transform: translate(-50%, -50%);
   transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
   /* transform: scale(1) translate(-50%, -50%);
   transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1); */
+
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
+    0px 2px 1px rgba(0, 0, 0, 0.2);
 }
 
 .modal-close-btn {
@@ -820,18 +883,167 @@ footer .logo {
   border-radius: 50%;
   background-color: var(--main-bg-color);
 
-  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1),
-    background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
-    box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .modal-close-icon {
   fill: currentColor;
 }
 
-.modal-close-btn:hover {
-  color: var(--inverse-text-color);
+.modal-close-btn:hover,
+.modal-close-btn:focus {
+  color: var(--accent-color);
+  cursor: pointer;
+}
+
+.modal-text {
+  margin: 0 0 12px;
+
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 1.15;
+  text-align: center;
+  letter-spacing: 0.03em;
+
+  color: var(--title-text-color);
+}
+
+.modal-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.field {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.comment-field {
+  margin-bottom: 20px;
+}
+
+.field-label {
+  display: inline-block;
+  margin-bottom: 4px;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.17;
+  letter-spacing: 0.01em;
+
+  color: var(--primary-text-color);
+}
+
+.input-container {
+  position: relative;
+}
+
+.field-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+
+  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.field-input {
+  display: block;
+  width: 100%;
+  padding: 12px 24px 12px 42px;
+
+  outline: none;
+  border: 1px solid var(--border-input-color);
+  border-radius: 4px;
+  color: var(--title-text-color);
+
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.14;
+  letter-spacing: 0.01em;
+
+  transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modal-comment {
+  resize: none;
+  padding: 12px 16px;
+}
+
+.modal-comment::placeholder {
+  font-size: 12px;
+  line-height: 1.17;
+
+  color: var(--modal-placeholder-text-color);
+}
+
+.field:focus-within .field-input {
+  border-color: var(--accent-color);
+}
+
+.field:focus-within .field-icon {
+  fill: var(--accent-color);
+}
+
+.licence-declaration,
+.licence-link {
+  margin-bottom: 0;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.71;
+  letter-spacing: 0.03em;
+
+  color: var(--primary-text-color);
+}
+
+.licence-declaration {
+  display: inline-flex;
+  align-items: center;
+}
+
+.licence-link {
+  display: inline-block;
+  color: var(--accent-color);
+}
+
+.checkbox-field {
+  margin-bottom: 30px;
+}
+
+.licence-declaration::before {
+  display: inline-block;
+  content: '';
+  margin-right: 7px;
+  width: 16px;
+  height: 15px;
+
+  border-radius: 2px;
+  border: 2px solid var(--title-text-color);
+
+  transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.checkbox:checked + .licence-declaration::before {
+  border-color: transparent;
   background-color: var(--accent-color);
-  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06),
-    1px 4px 6px rgba(0, 0, 0, 0.16);
+  background-position: center;
+  background-size: contain;
+  background-origin: border-box;
+  background-image: url(../images/icon-check.svg);
+}
+
+.field-input.checkbox:focus + .licence-declaration::before,
+.field-input.checkbox:hover + .licence-declaration::before {
+  border-color: var(--accent-color);
+}
+
+.modal-submit {
+  align-self: center;
+
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Уточнить по поводу цвета ховера кнопки модального окна */
+.modal-submit:hover,
+.modal-submit:focus {
+  background-color: #188ce8;
 }
